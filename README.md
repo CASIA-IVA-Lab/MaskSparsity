@@ -84,7 +84,7 @@ ln -s path  pycls/datasets/data/imagenet
 ​
 
 ```shell
-./prune.sh  ../path_to_weight  pruning_threshold
+# ./prune.sh  ../path_to_weight  pruning_threshold
 ./prune.sh  "/data/jiangnanfei/github/AAAI/pycls/paper/imagenet_uniform/prune_ratio_0.5/model_epoch_0100.pyth"  0.01
 ```
 ​
