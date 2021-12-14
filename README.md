@@ -31,16 +31,16 @@ ln -s path  pycls/datasets/data/imagenet
 ```
 ### Traning and Pruning
 
-#### Step 1: Train the baseline ResNet-50 on ImageNet
+#### Step 1. Train the baseline ResNet-50 on ImageNet
 ```shell
 ./train_baseline.sh
 ```
-#### Step 2: Global sparsity training on the trained ResNet-50
+#### Step 2. Global sparsity training on the trained ResNet-50
 ```shell
 # ./sparsity.sh    ../path_to_weight   sparsity_facotr   
 ./sparsity.sh  "paper/imagenet_uniform/baseline/weight/model_epoch_0100.pyth"  5e-4  
 ```
-#### Step 3: Get the pruning mask
+#### Step 3. Get the pruning mask
 ```shell
 # ./prune.sh  ../path_to_weight  pruning_threshold
 ./prune.sh  "/data/jiangnanfei/github/AAAI/pycls/paper/imagenet_uniform/prune_ratio_0.5/model_epoch_0100.pyth"  0.01
@@ -60,13 +60,13 @@ ln -s path  pycls/datasets/data/imagenet
 # ./finetune.sh  ./path_to_weight  lr
 ./finetune.sh  "paper/imagenet_uniform/prune_ratio_0.5/prune/th-p0.01_model.pt"  5e-4
 ```
-#### (For ablation study.) Training from Scratch
+#### Additional. (For ablation study.) Training from Scratch
 ```shell
 # ./scratch.sh  ./path_to_weight  lr
 ./scratch.sh  "paper/imagenet_uniform/prune_ratio_0.5/prune/th-p0.01_model.pt"  5e-4
 ```
-#### The dataset and the trained weight files.
-On the BaiduDisk [https://pan.baidu.com/s/1OP-tF94DVN0xKvNFCZ1HhQ](https://pan.baidu.com/s/1OP-tF94DVN0xKvNFCZ1HhQ)   
+
+The dataset and the trained weight files are uploaded to the BaiduDisk [https://pan.baidu.com/s/1OP-tF94DVN0xKvNFCZ1HhQ](https://pan.baidu.com/s/1OP-tF94DVN0xKvNFCZ1HhQ)   
 ​
 ## Citation
 ```latex
