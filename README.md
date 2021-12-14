@@ -1,5 +1,4 @@
 # MaskSparsity
-​
 This is the code repository of the paper **Pruning-aware Sparse Regularization for Network Pruning**.
 ​
 ## Abstract
@@ -13,7 +12,6 @@ The following training, finetuning, pruning stages are achieved via modifying th
 
 ### Installation
 #### Prepare the pytorch evoriments.
-​
 ```shell
 conda create -n pycls python=3.7 -y
 conda activate pycls
@@ -31,7 +29,6 @@ python setup.py develop --user
 ```shell
 ln -s path  pycls/datasets/data/imagenet
 ```
-​
 ### Traning and Pruning
 
 #### Step 1: Train the baseline ResNet-50 on ImageNet
