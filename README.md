@@ -6,7 +6,7 @@ Structural neural network pruning aims to remove the redundant channels in the d
 
 ![image.png](https://cdn.nlark.com/yuque/0/2021/png/329429/1639493307825-b5680ea6-5617-42a3-bc06-986af87fbd8e.png#clientId=u82a26e47-fb94-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=215&id=u00dd1335&margin=%5Bobject%20Object%5D&name=image.png&originHeight=430&originWidth=1478&originalType=binary&ratio=1&rotation=0&showTitle=false&size=47927&status=done&style=none&taskId=u5c2bcd40-239f-4757-8731-634b45704ed&title=&width=739)
 
-## User Guide
+## Usage
 This code is based on  [pycls](https://github.com/facebookresearch/pycls](/https://github.com/facebookresearch/pycls)).
 The following training, finetuning, pruning stages are achieved via modifying the correspoding parameters of mmdet/api/train.py.
 
