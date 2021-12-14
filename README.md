@@ -21,7 +21,7 @@ The following training, finetuning, pruning stages are achieved via modifying th
 
 
 ### Installation
-### Prepare the pytorch evoriments.
+#### Prepare the pytorch evoriments.
 ​
 
 ```shell
@@ -40,7 +40,7 @@ python setup.py develop --user
 ```
 ​
 
-### Prepare the ImageNet dataset
+#### Prepare the ImageNet dataset
 ```shell
 ln -s path  pycls/datasets/data/imagenet
 ```
@@ -49,20 +49,20 @@ ln -s path  pycls/datasets/data/imagenet
 ### Traning and Pruning
 ​
 
-### Step 1: Train the baseline ResNet-50 on ImageNet
+#### Step 1: Train the baseline ResNet-50 on ImageNet
 ```
 ./train_baseline.sh
 ```
 ​
 
-### Step 2: Global sparsity training on the trained ResNet-50
+#### Step 2: Global sparsity training on the trained ResNet-50
 ​
 
 ```
 # ./sparsity.sh    ../path_to_weight   sparsity_facotr   
 ./sparsity.sh  "paper/imagenet_uniform/baseline/weight/model_epoch_0100.pyth"  5e-4  
 ```
-### Step 3: Get the pruning mask
+#### Step 3: Get the pruning mask
 ​
 
 ```
@@ -71,7 +71,7 @@ ln -s path  pycls/datasets/data/imagenet
 ```
 ​
 
-### Step 4. Pruing-aware Sparsity Training (MaskSparsity)
+#### Step 4. Pruing-aware Sparsity Training (MaskSparsity)
 ​
 
 ```
@@ -80,7 +80,7 @@ ln -s path  pycls/datasets/data/imagenet
 ```
 ​
 
-### Step 5. Pruning
+#### Step 5. Pruning
 ​
 
 ```
@@ -89,7 +89,7 @@ ln -s path  pycls/datasets/data/imagenet
 ```
 ​
 
-### Step 6. Fine-tuning
+#### Step 6. Fine-tuning
 ​
 
 ```
@@ -98,14 +98,14 @@ ln -s path  pycls/datasets/data/imagenet
 ```
 ​
 
-### (For ablation study.) Training from Scratch
+#### (For ablation study.) Training from Scratch
 ​
 
 ```
 # ./scratch.sh  ./path_to_weight  lr
 ./scratch.sh  "paper/imagenet_uniform/prune_ratio_0.5/prune/th-p0.01_model.pt"  5e-4
 ```
-### The dataset and the trained weight files.
+#### The dataset and the trained weight files.
 On the BaiduDisk [https://pan.baidu.com/s/1OP-tF94DVN0xKvNFCZ1HhQ](https://pan.baidu.com/s/1OP-tF94DVN0xKvNFCZ1HhQ)   
 ​
 
