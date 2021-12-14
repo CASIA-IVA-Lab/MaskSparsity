@@ -1,0 +1,59 @@
+MODEL:
+  TYPE: resnet
+  DEPTH: 50
+  NUM_CLASSES: 1000
+RESNET:
+  TRANS_FUN: bottleneck_transform
+  NUM_GROUPS: 1
+  WIDTH_PER_GROUP: 64
+  STRIDE_1X1: False
+BN:
+  ZERO_INIT_FINAL_GAMMA: True
+OPTIM:
+  BASE_LR: 5e-4
+  LR_POLICY: steps
+  STEPS: [0,10, 20, 30]
+  LR_MULT: 0.1
+  MAX_EPOCH: 40
+  MOMENTUM: 0.9
+  NESTEROV: True
+  WEIGHT_DECAY: 0.0001
+TRAIN:
+  DATASET: imagenet
+  SPLIT: train
+  BATCH_SIZE: 256
+  IM_SIZE: 224
+  EVAL_PERIOD: 1
+TEST:
+  DATASET: imagenet
+  SPLIT: val
+  BATCH_SIZE: 200
+  IM_SIZE: 256
+NUM_GPUS: 8
+DATA_LOADER:
+  NUM_WORKERS: 4
+CUDNN:
+  BENCHMARK: True
+OUT_DIR: .
+
+SPARSE:
+  NORM_LAYER_NAMES: ['stem.bn', 's1.b1.f.a_bn', 's1.b1.f.b_bn', 's1.b2.f.a_bn', 's1.b2.f.b_bn', 's1.b3.f.a_bn', 's1.b3.f.b_bn', 's1.b1.f.c_bn', 's1.b2.f.c_bn', 's1.b3.f.c_bn', 's1.b1.bn', 's2.b1.f.a_bn', 's2.b1.f.b_bn', 's2.b2.f.a_bn', 's2.b2.f.b_bn', 's2.b3.f.a_bn', 's2.b3.f.b_bn', 's2.b4.f.a_bn', 's2.b4.f.b_bn', 's2.b1.f.c_bn', 's2.b2.f.c_bn', 's2.b3.f.c_bn', 's2.b4.f.c_bn', 's2.b1.bn', 's3.b1.f.a_bn', 's3.b1.f.b_bn', 's3.b2.f.a_bn', 's3.b2.f.b_bn', 's3.b3.f.a_bn', 's3.b3.f.b_bn', 's3.b4.f.a_bn', 's3.b4.f.b_bn', 's3.b5.f.a_bn', 's3.b5.f.b_bn', 's3.b6.f.a_bn', 's3.b6.f.b_bn', 's3.b1.f.c_bn', 's3.b2.f.c_bn', 's3.b3.f.c_bn', 's3.b4.f.c_bn', 's3.b5.f.c_bn', 's3.b6.f.c_bn', 's3.b1.bn', 's4.b1.f.a_bn', 's4.b1.f.b_bn', 's4.b2.f.a_bn', 's4.b2.f.b_bn', 's4.b3.f.a_bn', 's4.b3.f.b_bn', 's4.b1.f.c_bn', 's4.b2.f.c_bn', 's4.b3.f.c_bn', 's4.b1.bn'] 
+
+#['s2.b2.f.a_bn', 's4.b2.f.a_bn', 's3.b5.f.b_bn', 's2.b3.f.b_bn', 'stem.bn', 's4.b3.f.a_bn', 's3.b1.f.b_bn', 's3.b5.f.a_bn', 's3.b4.f.b_bn', 's1.b3.f.a_bn', 's2.b1.f.a_bn', 's3.b6.f.b_bn', 's3.b2.f.a_bn', 's4.b1.f.b_bn', 's3.b3.f.b_bn', 's3.b1.f.a_bn', 's2.b2.f.b_bn', 's2.b3.f.a_bn', 's1.b1.f.b_bn', 's2.b1.f.b_bn', 's3.b6.f.a_bn', 's4.b1.f.a_bn', 's1.b1.f.a_bn', 's3.b4.f.a_bn', 's1.b2.f.a_bn', 's2.b4.f.a_bn', 's4.b3.f.b_bn', 's4.b2.f.b_bn', 's3.b2.f.b_bn', 's2.b4.f.b_bn', 's1.b2.f.b_bn', 's1.b3.f.b_bn', 's3.b3.f.a_bn']
+  #MASK_DICT:
+
+PRUNE:
+    SPUER_NORM_LAYERS: [ ['s1.b1.f.c_bn', 's1.b2.f.c_bn', 's1.b3.f.c_bn', 's1.b1.bn'],
+                         ['s2.b1.f.c_bn', 's2.b2.f.c_bn', 's2.b3.f.c_bn', 's2.b4.f.c_bn', 's2.b1.bn'],
+                         ['s3.b1.f.c_bn', 's3.b2.f.c_bn', 's3.b3.f.c_bn', 's3.b4.f.c_bn', 's3.b5.f.c_bn', 's3.b6.f.c_bn', 's3.b1.bn'],
+                         ['s4.b1.f.c_bn', 's4.b2.f.c_bn', 's4.b3.f.c_bn', 's4.b1.bn']        ]
+    SPUER_SUCC_LAYERS: [ ['s1.b2.f.a','s1.b3.f.a','s2.b1.f.a','s2.b1.proj'],
+                         ['s2.b2.f.a','s2.b3.f.a','s2.b4.f.a','s3.b1.f.a','s3.b1.proj'],
+                         ['s3.b2.f.a','s3.b3.f.a','s3.b4.f.a','s3.b5.f.a','s3.b6.f.a','s4.b1.f.a','s4.b1.proj'],
+                         ['s4.b2.f.a','s4.b3.f.a','head.fc']]
+    SPUER_PREC_LAYERS: [ ['s1.b1.f.c','s1.b2.f.c','s1.b3.f.c','s1.b1.proj'],
+                         ['s2.b1.f.c','s2.b2.f.c','s2.b3.f.c','s2.b4.f.c','s2.b1.proj'],
+                         ['s3.b1.f.c','s3.b2.f.c','s3.b3.f.c','s3.b4.f.c','s3.b5.f.c','s3.b6.f.c','s3.b1.proj'],
+                         ['s4.b1.f.c','s4.b2.f.c','s4.b3.f.c','s4.b1.proj']   ]
+
+

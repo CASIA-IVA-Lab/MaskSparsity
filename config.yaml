@@ -1,0 +1,238 @@
+ANYNET:
+  BLOCK_TYPE: res_bottleneck_block
+  BOT_MULS: []
+  DEPTHS: []
+  GROUP_WS: []
+  SE_ON: false
+  SE_R: 0.25
+  STEM_TYPE: simple_stem_in
+  STEM_W: 32
+  STRIDES: []
+  WIDTHS: []
+BN:
+  CUSTOM_WEIGHT_DECAY: 0.0
+  EPS: 1.0e-05
+  MOM: 0.1
+  NUM_SAMPLES_PRECISE: 8192
+  USE_CUSTOM_WEIGHT_DECAY: false
+  USE_PRECISE_STATS: true
+  ZERO_INIT_FINAL_GAMMA: true
+CFG_DEST: config.yaml
+CUDNN:
+  BENCHMARK: true
+DATA_LOADER:
+  NUM_WORKERS: 4
+  PIN_MEMORY: true
+DIST_BACKEND: nccl
+DOWNLOAD_CACHE: /tmp/pycls-download-cache
+EN:
+  DC_RATIO: 0.0
+  DEPTHS: []
+  DROPOUT_RATIO: 0.0
+  EXP_RATIOS: []
+  HEAD_W: 1280
+  KERNELS: []
+  SE_R: 0.25
+  STEM_W: 32
+  STRIDES: []
+  WIDTHS: []
+FINETUNE: false
+HOST: localhost
+LOG_DEST: stdout
+LOG_PERIOD: 50
+MEM:
+  RELU_INPLACE: true
+MODEL:
+  DEPTH: 50
+  LOSS_FUN: cross_entropy
+  NUM_CLASSES: 1000
+  TYPE: resnet
+NUM_GPUS: 8
+OPTIM:
+  BASE_LR: 0.1
+  DAMPENING: 0.0
+  GAMMA: 0.1
+  LR_MULT: 0.1
+  LR_POLICY: steps
+  MAX_EPOCH: 100
+  METHOD: SGD
+  MOMENTUM: 0.9
+  NESTEROV: true
+  STEPS:
+  - 0
+  - 30
+  - 60
+  - 90
+  WARMUP_EPOCHS: 0
+  WARMUP_FACTOR: 0.1
+  WEIGHT_DECAY: 0.0001
+OUT_DIR: .
+PORT_RANGE:
+- 10000
+- 65000
+PREC_TIME:
+  NUM_ITER: 30
+  WARMUP_ITER: 3
+PRUNE:
+  FACTOR: null
+  GET_MASK: false
+  MIN_CHANNELS: 1
+  PRUNE_RESIDUAL: false
+  SPUER_NORM_LAYERS:
+  - - s1.b1.f.c_bn
+    - s1.b2.f.c_bn
+    - s1.b3.f.c_bn
+    - s1.b1.bn
+  - - s2.b1.f.c_bn
+    - s2.b2.f.c_bn
+    - s2.b3.f.c_bn
+    - s2.b4.f.c_bn
+    - s2.b1.bn
+  - - s3.b1.f.c_bn
+    - s3.b2.f.c_bn
+    - s3.b3.f.c_bn
+    - s3.b4.f.c_bn
+    - s3.b5.f.c_bn
+    - s3.b6.f.c_bn
+    - s3.b1.bn
+  - - s4.b1.f.c_bn
+    - s4.b2.f.c_bn
+    - s4.b3.f.c_bn
+    - s4.b1.bn
+  SPUER_PREC_LAYERS:
+  - - s1.b1.f.c
+    - s1.b2.f.c
+    - s1.b3.f.c
+    - s1.b1.proj
+  - - s2.b1.f.c
+    - s2.b2.f.c
+    - s2.b3.f.c
+    - s2.b4.f.c
+    - s2.b1.proj
+  - - s3.b1.f.c
+    - s3.b2.f.c
+    - s3.b3.f.c
+    - s3.b4.f.c
+    - s3.b5.f.c
+    - s3.b6.f.c
+    - s3.b1.proj
+  - - s4.b1.f.c
+    - s4.b2.f.c
+    - s4.b3.f.c
+    - s4.b1.proj
+  SPUER_SUCC_LAYERS:
+  - - s1.b2.f.a
+    - s1.b3.f.a
+    - s2.b1.f.a
+    - s2.b1.proj
+  - - s2.b2.f.a
+    - s2.b3.f.a
+    - s2.b4.f.a
+    - s3.b1.f.a
+    - s3.b1.proj
+  - - s3.b2.f.a
+    - s3.b3.f.a
+    - s3.b4.f.a
+    - s3.b5.f.a
+    - s3.b6.f.a
+    - s4.b1.f.a
+    - s4.b1.proj
+  - - s4.b2.f.a
+    - s4.b3.f.a
+    - head.fc
+  THRESHOLD_METHOD: th
+  USE_MASK: null
+REBUILD: false
+REGNET:
+  BLOCK_TYPE: res_bottleneck_block
+  BOT_MUL: 1.0
+  DEPTH: 10
+  GROUP_W: 16
+  SE_ON: false
+  SE_R: 0.25
+  STEM_TYPE: simple_stem_in
+  STEM_W: 32
+  STRIDE: 2
+  W0: 32
+  WA: 5.0
+  WM: 2.5
+RESNET:
+  NUM_GROUPS: 1
+  STRIDE_1X1: false
+  TRANS_FUN: bottleneck_transform
+  WIDTH_PER_GROUP: 64
+RNG_SEED: 1
+SCRATCH: false
+SPARSE:
+  MASK_DICT: null
+  NORM_LAYER_NAMES:
+  - stem.bn
+  - s1.b1.f.a_bn
+  - s1.b1.f.b_bn
+  - s1.b2.f.a_bn
+  - s1.b2.f.b_bn
+  - s1.b3.f.a_bn
+  - s1.b3.f.b_bn
+  - s1.b1.f.c_bn
+  - s1.b2.f.c_bn
+  - s1.b3.f.c_bn
+  - s1.b1.bn
+  - s2.b1.f.a_bn
+  - s2.b1.f.b_bn
+  - s2.b2.f.a_bn
+  - s2.b2.f.b_bn
+  - s2.b3.f.a_bn
+  - s2.b3.f.b_bn
+  - s2.b4.f.a_bn
+  - s2.b4.f.b_bn
+  - s2.b1.f.c_bn
+  - s2.b2.f.c_bn
+  - s2.b3.f.c_bn
+  - s2.b4.f.c_bn
+  - s2.b1.bn
+  - s3.b1.f.a_bn
+  - s3.b1.f.b_bn
+  - s3.b2.f.a_bn
+  - s3.b2.f.b_bn
+  - s3.b3.f.a_bn
+  - s3.b3.f.b_bn
+  - s3.b4.f.a_bn
+  - s3.b4.f.b_bn
+  - s3.b5.f.a_bn
+  - s3.b5.f.b_bn
+  - s3.b6.f.a_bn
+  - s3.b6.f.b_bn
+  - s3.b1.f.c_bn
+  - s3.b2.f.c_bn
+  - s3.b3.f.c_bn
+  - s3.b4.f.c_bn
+  - s3.b5.f.c_bn
+  - s3.b6.f.c_bn
+  - s3.b1.bn
+  - s4.b1.f.a_bn
+  - s4.b1.f.b_bn
+  - s4.b2.f.a_bn
+  - s4.b2.f.b_bn
+  - s4.b3.f.a_bn
+  - s4.b3.f.b_bn
+  - s4.b1.f.c_bn
+  - s4.b2.f.c_bn
+  - s4.b3.f.c_bn
+  - s4.b1.bn
+  REGULAR_METHOD: L1
+  SPARSITY: null
+TEST:
+  BATCH_SIZE: 200
+  DATASET: imagenet
+  IM_SIZE: 256
+  SPLIT: val
+  WEIGHTS: ''
+TRAIN:
+  AUTO_RESUME: true
+  BATCH_SIZE: 256
+  CHECKPOINT_PERIOD: 1
+  DATASET: imagenet
+  EVAL_PERIOD: 1
+  IM_SIZE: 224
+  SPLIT: train
+  WEIGHTS: paper/imagenet_uniform/prune_ratio_0.5/prune/th-p0.01_model.pt
