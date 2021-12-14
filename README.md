@@ -49,38 +49,38 @@ ln -s path  pycls/datasets/data/imagenet
 ### Traning and Pruning
 ​
 
-### 训练baseline
+### Step 1: Train the baseline ResNet-50 on ImageNet
 ```
 ./train_baseline.sh
 ```
 ​
 
-### 稀疏训练
+### Step 2: Global sparsity training on the trained ResNet-50
 ​
 
 ```
-./sparsity.sh    ../path_to_weight   sparsity_facotr   
+# ./sparsity.sh    ../path_to_weight   sparsity_facotr   
 ./sparsity.sh  "paper/imagenet_uniform/baseline/weight/model_epoch_0100.pyth"  5e-4  
 ```
-### 剪枝获得mask
+### Step 3: Get the pruning mask
 ​
 
 ```
-./prune.sh  ../path_to_weight  pruning_threshold
+# ./prune.sh  ../path_to_weight  pruning_threshold
 ./prune.sh  "/data/jiangnanfei/github/AAAI/pycls/paper/imagenet_uniform/prune_ratio_0.5/model_epoch_0100.pyth"  0.01
 ```
 ​
 
-### maskL1稀疏训练
+### Step 4. Pruing-aware Sparsity Training (MaskSparsity)
 ​
 
 ```
-./mask_sparsity.sh    ../path_to_weight   sparsity_facotr   ../path_to_maskweight
+# ./mask_sparsity.sh    ../path_to_weight   sparsity_facotr   ../path_to_maskweight
 ./mask_sparsity.sh  "paper/imagenet_uniform/baseline/weight/model_epoch_0100.pyth"  5e-4  "paper/imagenet_uniform/prune_ratio_0.5/0.5_uniform.mask"
 ```
 ​
 
-### 剪枝
+### Step 5. Pruning
 ​
 
 ```
@@ -89,24 +89,24 @@ ln -s path  pycls/datasets/data/imagenet
 ```
 ​
 
-### finetune
+### Step 6. Fine-tuning
 ​
 
 ```
-./finetune.sh  ./path_to_weight  lr
+# ./finetune.sh  ./path_to_weight  lr
 ./finetune.sh  "paper/imagenet_uniform/prune_ratio_0.5/prune/th-p0.01_model.pt"  5e-4
 ```
 ​
 
-### scratch
+### (For ablation study.) Training from Scratch
 ​
 
 ```
-./scratch.sh  ./path_to_weight  lr
+# ./scratch.sh  ./path_to_weight  lr
 ./scratch.sh  "paper/imagenet_uniform/prune_ratio_0.5/prune/th-p0.01_model.pt"  5e-4
 ```
-### 数据集与权重文件
-实验权重文件下载 [https://pan.baidu.com/s/1OP-tF94DVN0xKvNFCZ1HhQ](https://pan.baidu.com/s/1OP-tF94DVN0xKvNFCZ1HhQ)   
+### The dataset and the trained weight files.
+On the BaiduDisk [https://pan.baidu.com/s/1OP-tF94DVN0xKvNFCZ1HhQ](https://pan.baidu.com/s/1OP-tF94DVN0xKvNFCZ1HhQ)   
 ​
 
 ## Citation
