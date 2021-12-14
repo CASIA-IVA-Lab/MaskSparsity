@@ -50,7 +50,7 @@ ln -s path  pycls/datasets/data/imagenet
 ​
 
 #### Step 1: Train the baseline ResNet-50 on ImageNet
-```
+```shell
 ./train_baseline.sh
 ```
 ​
@@ -58,14 +58,14 @@ ln -s path  pycls/datasets/data/imagenet
 #### Step 2: Global sparsity training on the trained ResNet-50
 ​
 
-```
+```shell
 # ./sparsity.sh    ../path_to_weight   sparsity_facotr   
 ./sparsity.sh  "paper/imagenet_uniform/baseline/weight/model_epoch_0100.pyth"  5e-4  
 ```
 #### Step 3: Get the pruning mask
 ​
 
-```
+```shell
 # ./prune.sh  ../path_to_weight  pruning_threshold
 ./prune.sh  "/data/jiangnanfei/github/AAAI/pycls/paper/imagenet_uniform/prune_ratio_0.5/model_epoch_0100.pyth"  0.01
 ```
@@ -74,7 +74,7 @@ ln -s path  pycls/datasets/data/imagenet
 #### Step 4. Pruing-aware Sparsity Training (MaskSparsity)
 ​
 
-```
+```shell
 # ./mask_sparsity.sh    ../path_to_weight   sparsity_facotr   ../path_to_maskweight
 ./mask_sparsity.sh  "paper/imagenet_uniform/baseline/weight/model_epoch_0100.pyth"  5e-4  "paper/imagenet_uniform/prune_ratio_0.5/0.5_uniform.mask"
 ```
@@ -83,7 +83,7 @@ ln -s path  pycls/datasets/data/imagenet
 #### Step 5. Pruning
 ​
 
-```
+```shell
 ./prune.sh  ../path_to_weight  pruning_threshold
 ./prune.sh  "/data/jiangnanfei/github/AAAI/pycls/paper/imagenet_uniform/prune_ratio_0.5/model_epoch_0100.pyth"  0.01
 ```
@@ -92,7 +92,7 @@ ln -s path  pycls/datasets/data/imagenet
 #### Step 6. Fine-tuning
 ​
 
-```
+```shell
 # ./finetune.sh  ./path_to_weight  lr
 ./finetune.sh  "paper/imagenet_uniform/prune_ratio_0.5/prune/th-p0.01_model.pt"  5e-4
 ```
@@ -101,7 +101,7 @@ ln -s path  pycls/datasets/data/imagenet
 #### (For ablation study.) Training from Scratch
 ​
 
-```
+```shell
 # ./scratch.sh  ./path_to_weight  lr
 ./scratch.sh  "paper/imagenet_uniform/prune_ratio_0.5/prune/th-p0.01_model.pt"  5e-4
 ```
