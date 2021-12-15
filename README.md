@@ -38,32 +38,33 @@ ln -s path  pycls/datasets/data/imagenet
 #### Step 2. Global sparsity training on the trained ResNet-50
 ```shell
 # ./sparsity.sh    ../path_to_weight   sparsity_facotr   
-./sparsity.sh  "paper/imagenet_uniform/baseline/weight/model_epoch_0100.pyth"  5e-4  
+./sparsity.sh  "paper/imagenet_mask_sparsity/baseline/weight/model_epoch_0100.pyth"  5e-4  
 ```
 #### Step 3. Get the pruning mask
 ```shell
 # ./prune.sh  ../path_to_weight  pruning_threshold
-./prune.sh  "/data/jiangnanfei/github/AAAI/pycls/paper/imagenet_uniform/prune_ratio_0.5/model_epoch_0100.pyth"  0.01
+./prune.sh     "paper/imagenet_uniform/prune_ratio_0.5/model_epoch_0100.pyth"  0.01
 ```
 #### Step 4. Pruing-aware Sparsity Training (MaskSparsity)
+We suggest you reimplement the results of the paper from this step.
 ```shell
 # ./mask_sparsity.sh    ../path_to_weight   sparsity_facotr   ../path_to_maskweight
-./mask_sparsity.sh  "paper/imagenet_uniform/baseline/weight/model_epoch_0100.pyth"  5e-4  "paper/imagenet_uniform/prune_ratio_0.5/0.5_uniform.mask"
+./mask_sparsity.sh  "paper/imagenet_uniform/prune_ratio_0.5/model_epoch_0100.pyth"  5e-4  "paper/imagenet_mask_sparsity/prune_ratio_0.51/flops50.mask"
 ```
 #### Step 5. Pruning
 ```shell
 # ./prune.sh  ../path_to_weight  pruning_threshold
-./prune.sh  "/data/jiangnanfei/github/AAAI/pycls/paper/imagenet_uniform/prune_ratio_0.5/model_epoch_0100.pyth"  0.01
+./prune.sh  "paper/imagenet_mask_sparsity/prune_ratio_0.51/model_epoch_0100.pyth"  0.01
 ```
 #### Step 6. Fine-tuning
 ```shell
 # ./finetune.sh  ./path_to_weight  lr
-./finetune.sh  "paper/imagenet_uniform/prune_ratio_0.5/prune/th-p0.01_model.pt"  5e-4
+./finetune.sh  "paper/imagenet_mask_sparsity/prune_ratio_0.51/prune/th-p0.01_model.pt"  5e-4
 ```
 #### Additional. (For ablation study.) Training from Scratch
 ```shell
 # ./scratch.sh  ./path_to_weight  lr
-./scratch.sh  "paper/imagenet_uniform/prune_ratio_0.5/prune/th-p0.01_model.pt"  5e-4
+./scratch.sh  "paper/imagenet_mask_sparsity/prune_ratio_0.51/prune/th-p0.01_model.pt"  5e-4
 ```
 
 The dataset and the trained weight files are uploaded to the BaiduDisk [https://pan.baidu.com/s/1OP-tF94DVN0xKvNFCZ1HhQ](https://pan.baidu.com/s/1OP-tF94DVN0xKvNFCZ1HhQ)   
